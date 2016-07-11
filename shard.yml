@@ -1,0 +1,7 @@
+name: bencoding.cr
+version: 0.1.0
+
+authors:
+  - Hamdi Akoğuz <hamdiakoguz@gmail.com>
+
+license: MIT
