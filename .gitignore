@@ -2,6 +2,7 @@
 /libs/
 /.crystal/
 /.shards/
+/spec/fixtures.log
 
 
 # Libraries don't need dependency lock

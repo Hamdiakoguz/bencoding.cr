@@ -95,21 +95,17 @@ module BEncoding
       length = ((@current.not_nil! + to_colon).chomp(BYTE_ARRAY_DIVIDER)).to_u64
 
       slice = Slice(UInt8).new(length)
-      io.read(slice)
-      array = slice.to_a
-
-      byte_array_to_string(array)
-    end
-
-    def byte_array_to_string(byte_array : Array(UInt8))
-      s = String.build do |str|
-        byte_array.each do |byte|
-          str.write_byte(byte)
-        end
+      read = io.read(slice)
+      while read < length
+        slice += read
+        read += io.read(slice)
       end
 
-      # puts "to string", s
-      s
+      begin
+        String.new(slice, "UTF-8")
+      rescue
+        slice.hexstring
+      end
     end
   end
 

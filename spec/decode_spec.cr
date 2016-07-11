@@ -1,4 +1,5 @@
 require "./spec_helper"
+require "logger"
 
 describe BEncoding do
   it "decodes strings" do
@@ -20,4 +21,15 @@ describe BEncoding do
     decoded = BEncoding.decode("d3:bari-10e3:fooi1ee")
     decoded.should eq({"foo" => 1, "bar" => -10})
   end
+
+  fixtures_logger = Logger.new(File.new("#{__DIR__}/fixtures.log", "w"))
+  Dir["#{__DIR__}/fixtures/*.torrent"].each do |fixture|
+    it "decodes #{fixture}" do
+      file = File.open(fixture)
+      file.sync = true
+      decoded = BEncoding.decode(file)
+      fixtures_logger.info(decoded)
+    end
+  end
+
 end
