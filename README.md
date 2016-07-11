@@ -45,7 +45,7 @@ BEncoding.decode("d3:foo3:bar3:bazi42ee") # => {"foo" => "bar", "baz" => 42}
 BEncoding.encode("foo bar") # => "7:foo bar"
 BEncoding.encode(42) # => "i42e"
 BEncoding.encode([1, 2, 3]) # => "li1ei2ei3ee"
-BEncoding.encode({"foo" => 1, "bar" => -10} # => "d3:bari-10e3:fooi1ee"
+BEncoding.encode({"foo" => 1, "bar" => -10}) # => "d3:bari-10e3:fooi1ee"
 ```
 
 
