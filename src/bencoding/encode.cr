@@ -1,12 +1,16 @@
 module BEncoding
   def self.encode(param)
-    io = MemoryIO.new
+    io = IO::Memory.new
     Encoder.new(io).encode(param)
     io.to_s
   end
 
   class Encoder
     def initialize(@io : IO)
+    end
+
+    def encode_key(key : String)
+      encode(key)
     end
 
     def encode(param : Int)
@@ -21,10 +25,10 @@ module BEncoding
       @io << param
     end
 
-    def encode(param : Hash(String, T))
+    def encode(param : Hash)
       @io << DICTIONARY_START
       param.keys.sort.each do |key|
-        encode(key)
+        encode_key(key)
         encode(param[key])
       end
       @io << DICTIONARY_END

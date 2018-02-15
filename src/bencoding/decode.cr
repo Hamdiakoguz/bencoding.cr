@@ -18,7 +18,7 @@ module BEncoding
     end
 
     def self.from(str : String)
-      Decoder.new(MemoryIO.new(str))
+      Decoder.new(IO::Memory.new(str))
     end
 
     def initialize(@io : IO)
