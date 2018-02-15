@@ -31,5 +31,4 @@ describe BEncoding do
       fixtures_logger.info(decoded)
     end
   end
-
 end

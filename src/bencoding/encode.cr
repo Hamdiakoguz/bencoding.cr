@@ -32,7 +32,7 @@ module BEncoding
 
     def encode(param : Enumerable)
       @io << LIST_START
-      param.each {|p| encode(p) }
+      param.each { |p| encode(p) }
       @io << LIST_END
     end
   end
