@@ -2,25 +2,21 @@
 
 Crystal library for the bencode data serialization format
 
-
-What is bencode?
-----------------
+## What is bencode?
 
 Bencode is a simple data serialization format used by the popular
 [BitTorrent](http://bittorrent.org/) P2P file sharing system.
 
 It contains only four data types, namely:
 
-- byte strings
+- strings
 - integers
-- lists
-- dictionaries
+- arrays
+- hashes
 
 For more info see [spec](http://www.bittorrent.org/beps/bep_0003.html#bencoding).
 
-
 ## Installation
-
 
 Add this to your application's `shard.yml`:
 
@@ -30,9 +26,7 @@ dependencies:
     github: Hamdiakoguz/bencoding.cr
 ```
 
-
 ## Usage
-
 
 ```crystal
 require "bencoding.cr"

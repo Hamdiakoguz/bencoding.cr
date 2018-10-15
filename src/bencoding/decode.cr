@@ -2,11 +2,11 @@ module BEncoding
   alias ObjectType = Hash(String, ObjectType) | Int64 | String | Array(ObjectType)
 
   def self.decode(str : String)
-    Decoder.from(str).decode()
+    Decoder.from(str).decode
   end
 
   def self.decode(io : IO)
-    Decoder.from(io).decode()
+    Decoder.from(io).decode
   end
 
   class Decoder
@@ -18,7 +18,7 @@ module BEncoding
     end
 
     def self.from(str : String)
-      Decoder.new(MemoryIO.new(str))
+      Decoder.new(IO::Memory.new(str))
     end
 
     def initialize(@io : IO)
@@ -74,7 +74,6 @@ module BEncoding
         @current = io.read_char
       end
 
-      # puts "decoded list", list
       list
     end
 
@@ -84,7 +83,6 @@ module BEncoding
       raise DecodeError.new("invalid number") unless number
       num = (number.chomp(NUMBER_END)).to_i64
 
-      # puts "decoded number", num
       num
     end
 
