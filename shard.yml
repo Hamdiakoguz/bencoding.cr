@@ -1,6 +1,8 @@
 name: bencoding.cr
 version: 0.1.0
 
+crystal: 0.26.1
+
 authors:
   - Hamdi Akoğuz <hamdiakoguz@gmail.com>
 

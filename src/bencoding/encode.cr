@@ -1,6 +1,6 @@
 module BEncoding
   def self.encode(param)
-    io = MemoryIO.new
+    io = IO::Memory.new
     Encoder.new(io).encode(param)
     io.to_s
   end
@@ -21,7 +21,7 @@ module BEncoding
       @io << param
     end
 
-    def encode(param : Hash(String, T))
+    def encode(param : Hash(String, String | Int32))
       @io << DICTIONARY_START
       param.keys.sort.each do |key|
         encode(key)
@@ -32,7 +32,7 @@ module BEncoding
 
     def encode(param : Enumerable)
       @io << LIST_START
-      param.each {|p| encode(p) }
+      param.each { |p| encode(p) }
       @io << LIST_END
     end
   end
